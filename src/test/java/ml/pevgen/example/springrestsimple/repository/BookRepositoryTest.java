@@ -1,11 +1,13 @@
 package ml.pevgen.example.springrestsimple.repository;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+@Ignore
 @Testcontainers
 class BookRepositoryTest {
     @Container

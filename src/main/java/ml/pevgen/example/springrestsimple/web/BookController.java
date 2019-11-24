@@ -1,7 +1,7 @@
 package ml.pevgen.example.springrestsimple.web;
 
 import lombok.extern.slf4j.Slf4j;
-import ml.pevgen.example.springrestsimple.domain.Book;
+import ml.pevgen.example.springrestsimple.dto.BookDto;
 import ml.pevgen.example.springrestsimple.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +19,7 @@ public class BookController {
     }
 
     @GetMapping(value = "/books")
-    public List<Book> findAll() {
+    public List<BookDto> findAll() {
         return this.bookService.findAll();
     }
 
