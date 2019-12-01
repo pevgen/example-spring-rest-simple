@@ -15,6 +15,4 @@ public interface BookMapper {
     Book toEntity(BookDto bookDto);
     List<Book> toEntityList(List<BookDto> bookDtoList);
 
-
-
 }

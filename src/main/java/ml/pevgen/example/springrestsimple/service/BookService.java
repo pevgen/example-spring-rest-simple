@@ -1,12 +1,13 @@
 package ml.pevgen.example.springrestsimple.service;
 
 import lombok.extern.slf4j.Slf4j;
+import ml.pevgen.example.springrestsimple.domain.Book;
 import ml.pevgen.example.springrestsimple.dto.BookDto;
 import ml.pevgen.example.springrestsimple.mapper.BookMapper;
 import ml.pevgen.example.springrestsimple.repository.BookRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @Slf4j
@@ -21,7 +22,12 @@ public class BookService {
         this.bookMapper = bookMapper;
     }
 
-    public List<BookDto> findAll() {
-        return bookMapper.toDtoList(this.bookRepository.findAll());
+    public Page<BookDto> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable).map(bookMapper::toDto);
     }
+
+    public BookDto findById(Long id) {
+        return bookMapper.toDto(bookRepository.findById(id).orElse(new Book()));
+    }
+
 }
