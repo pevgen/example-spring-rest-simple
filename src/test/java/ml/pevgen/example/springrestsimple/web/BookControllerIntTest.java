@@ -26,9 +26,15 @@ class BookControllerIntTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(content().json("[]"))
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$").isEmpty());
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.pageable").isNotEmpty());
+    }
+
+    @Test
+    void findById() throws Exception {
+        mockMvc.perform(get("/books/123"))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 
     @Test

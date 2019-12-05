@@ -1,7 +1,6 @@
 package ml.pevgen.example.springrestsimple.service;
 
 import lombok.extern.slf4j.Slf4j;
-import ml.pevgen.example.springrestsimple.domain.Book;
 import ml.pevgen.example.springrestsimple.dto.BookDto;
 import ml.pevgen.example.springrestsimple.mapper.BookMapper;
 import ml.pevgen.example.springrestsimple.repository.BookRepository;
@@ -27,7 +26,29 @@ public class BookService {
     }
 
     public BookDto findById(Long id) {
-        return bookMapper.toDto(bookRepository.findById(id).orElse(new Book()));
+        return bookMapper.toDto(bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found")));
+    }
+
+    public BookDto create(BookDto newBookDto) {
+        if (newBookDto.getId() != null) {
+            throw new IllegalArgumentException("New book shouldn't have a value in the field 'Id'");
+        }
+        return bookMapper.toDto(
+                bookRepository.save(
+                        bookMapper.toEntity(newBookDto)));
+    }
+
+    public BookDto update(BookDto updatedBookDto) {
+        if (updatedBookDto.getId() == null) {
+            throw new IllegalArgumentException("New book must have a value in the field 'Id'");
+        }
+        return bookMapper.toDto(
+                bookRepository.save(
+                        bookMapper.toEntity(updatedBookDto)));
+    }
+
+    public void deleteById(Long bookId) {
+        bookRepository.deleteById(bookId);
     }
 
 }

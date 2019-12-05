@@ -8,7 +8,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Ignore
-@Testcontainers
+//@Testcontainers
 class BookRepositoryTest {
     @Container
     private static final MySQLContainer MY_SQL_CONTAINER = new MySQLContainer();
