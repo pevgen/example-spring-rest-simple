@@ -1,4 +1,4 @@
-package ml.pevgen.example.springrestsimple.web;
+package ml.pevgen.example.springrestsimple.web.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,7 +12,7 @@ public class ExceptionTranslator {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    public String allException(Exception ex) {
-        return ex.getMessage();
+    public ErrorResponse allException(Exception ex) {
+        return new ErrorResponse(ex.getMessage());
     }
 }
