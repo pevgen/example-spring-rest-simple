@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -38,10 +39,10 @@ class BookControllerIntTest {
     }
 
     @Test
-    void homePage() throws Exception {
-        mockMvc.perform(get("/home"))
+    void testPage() throws Exception {
+        mockMvc.perform(get("/test"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("home"));
+                .andExpect(content().string(containsString("test")));
     }
 }

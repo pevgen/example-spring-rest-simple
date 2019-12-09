@@ -57,7 +57,7 @@ public class BookController {
 
     @ApiOperation(value = "Test endpoint", notes = "Just for health-check of the resource")
     @GetMapping("/test")
-    public String homePage() {
+    public String testPage() {
         return String.format("test : %s", Instant.now());
     }
 }
