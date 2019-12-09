@@ -2,9 +2,7 @@ package ml.pevgen.example.springrestsimple.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -16,4 +14,6 @@ public class Author {
 
     private String firstName;
     private String lastName;
+    @ManyToOne
+    private Book book;
 }
