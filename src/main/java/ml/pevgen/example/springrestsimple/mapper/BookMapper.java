@@ -10,9 +10,11 @@ import java.util.List;
 public interface BookMapper {
 
     BookDto toDto(Book book);
+
     List<BookDto> toDtoList(List<Book> books);
 
     Book toEntity(BookDto bookDto);
+
     List<Book> toEntityList(List<BookDto> bookDtoList);
 
 }

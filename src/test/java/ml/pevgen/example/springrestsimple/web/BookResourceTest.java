@@ -16,14 +16,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles({"test"})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class BookControllerIntTest {
+class BookResourceTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     void findAll() throws Exception {
-        mockMvc.perform(get("/books"))
+        mockMvc.perform(get(BookResource.RESOURCE_URI_BOOKS))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
@@ -33,14 +33,14 @@ class BookControllerIntTest {
 
     @Test
     void findById() throws Exception {
-        mockMvc.perform(get("/books/123"))
+        mockMvc.perform(get(BookResource.RESOURCE_URI_BOOKS + "/123"))
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }
 
     @Test
     void testPage() throws Exception {
-        mockMvc.perform(get("/test"))
+        mockMvc.perform(get(BookResource.RESOURCE_URI_BOOKS + "/test"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("test")));

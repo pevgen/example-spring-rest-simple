@@ -16,40 +16,43 @@ import java.time.Instant;
 @RestController
 @Slf4j
 @Api(value = "books")
-public class BookController {
+@RequestMapping(BookResource.RESOURCE_URI_BOOKS)
+public class BookResource {
+
+    static final String RESOURCE_URI_BOOKS = "/books";
 
     private BookService bookService;
 
-    public BookController(BookService bookService) {
+    public BookResource(BookService bookService) {
         this.bookService = bookService;
     }
 
     @ApiOperation(value = "Finds all Books in the library", notes = "Notes for the operation")
-    @GetMapping("/books")
+    @GetMapping
     public Page<BookDto> findAll(Pageable pageable) {
         return this.bookService.findAll(pageable);
     }
 
     @ApiOperation(value = "Finds a book by ID")
-    @GetMapping(value = "/books/{bookId}")
+    @GetMapping(value = "/{bookId}")
     public BookDto findById(@PathVariable("bookId") Long bookId) {
         return this.bookService.findById(bookId);
     }
 
     @ApiOperation(value = "Create a new book")
-    @PostMapping(value = "/books")
+    @PostMapping
     public BookDto create(@RequestBody BookDto newBookDto) {
         return this.bookService.create(newBookDto);
     }
 
     @ApiOperation(value = "Update a book")
-    @PutMapping(value = "/books")
+    @PutMapping
     public BookDto update(@RequestBody BookDto updatedBookDto) {
         return this.bookService.update(updatedBookDto);
     }
 
     @ApiOperation(value = "Delete a book by ID")
-    @DeleteMapping(value = "/books/{bookId}")
+    @DeleteMapping(value = "/{bookId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteById(@PathVariable("bookId") Long bookId) {
         this.bookService.deleteById(bookId);
