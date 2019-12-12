@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="NOW()" dbms="mysql"/>
+
+    <changeSet id="20191212173100-1" author="pevgen">
+
+        <createTable tableName="author_book">
+            <column name="author_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="book_id"
+                                 baseTableName="author_book"
+                                 constraintName="fk_author_book_book_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="book"/>
+
+        <addForeignKeyConstraint baseColumnNames="author_id"
+                                 baseTableName="author_book"
+                                 constraintName="fk_author_book_author_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="author"/>
+
+    </changeSet>
+
+</databaseChangeLog>
