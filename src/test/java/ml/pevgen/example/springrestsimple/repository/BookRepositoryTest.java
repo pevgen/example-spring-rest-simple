@@ -1,23 +1,26 @@
 package ml.pevgen.example.springrestsimple.repository;
 
-import org.junit.Assert;
-import org.junit.Ignore;
+import ml.pevgen.example.springrestsimple.domain.Book;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
-@Ignore
-//@Testcontainers
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@DataJpaTest
+@ActiveProfiles({"test"})
 class BookRepositoryTest {
-    @Container
-    private static final MySQLContainer MY_SQL_CONTAINER = new MySQLContainer();
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @Test
-    void someTestMethod() {
-        String url = MY_SQL_CONTAINER.getJdbcUrl();
-
-        // create a connection and run test as normal
-        Assert.fail("url:" + url);
+    void findById() {
+        assertThat(bookRepository).isNotNull();
+        Optional<Book> result = bookRepository.findById(1L);
+        assertThat(result).isEmpty();
     }
 }

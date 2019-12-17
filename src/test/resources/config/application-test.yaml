@@ -13,12 +13,12 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-  liquibase:
-    enabled: false
-
   h2:
     console:
       enabled: true
+
+  liquibase:
+    enabled: false
 
 logging:
   level:

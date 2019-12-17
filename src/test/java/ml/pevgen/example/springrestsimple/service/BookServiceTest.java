@@ -4,6 +4,7 @@ import ml.pevgen.example.springrestsimple.domain.Book;
 import ml.pevgen.example.springrestsimple.dto.BookDto;
 import ml.pevgen.example.springrestsimple.mapper.BookMapper;
 import ml.pevgen.example.springrestsimple.repository.BookRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
@@ -32,11 +33,17 @@ class BookServiceTest {
     @Spy
     private BookMapper bookMapper = Mappers.getMapper(BookMapper.class);
 
+    private Book book;
+    private long testId = 1L;
+
+    @BeforeEach
+    public void beforeEach(){
+        book = new Book(testId, "isbn-1", "title-1", Collections.emptyList());
+        Mockito.when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
+    }
+
     @Test
     void findById() {
-        long testId = 1L;
-        Book book = new Book(testId, "isbn-1", "title-1", Collections.emptyList());
-        Mockito.when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
 
         BookDto resultDto = bookService.findById(testId);
         assertThat(resultDto).isNotNull();
