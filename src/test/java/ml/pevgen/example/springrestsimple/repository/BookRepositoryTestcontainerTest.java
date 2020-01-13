@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BookRepositoryTestcontainerTest {
 
     @ClassRule
-    public static MySQLContainer MY_SQL_CONTAINER = new MySQLContainer()
+    public static final MySQLContainer MY_SQL_CONTAINER = new MySQLContainer()
             .withDatabaseName("testDb")
             .withUsername("test")
             .withPassword("test");

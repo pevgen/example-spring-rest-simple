@@ -25,3 +25,16 @@ logging:
     org:
       hibernate:
         type: trace
+    ml:
+      pevgen:
+        example:
+          springrestsimple:
+            repository:
+              remote: DEBUG
+feign:
+  client:
+    config:
+      googleBooksClient:
+        loggerLevel: full
+
+
