@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.EnabledIf;
 import org.testcontainers.containers.MySQLContainer;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@ActiveProfiles("testcontainers")
+@EnabledIf(expression = "#{environment.acceptsProfiles('testcontainers')}")
 public class BookRepositoryTestcontainerTest {
 
     @ClassRule
