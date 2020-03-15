@@ -9,3 +9,6 @@
   - Docker
   - Testcontainer
   - ... to be continued ...
+
+### Run maven build with image creating (without push)
+mvn compile jib:dockerBuild

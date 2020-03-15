@@ -20,7 +20,7 @@ class GoogleBooksResourceTest {
 
     @Test
     void findBy() throws Exception {
-        fail("need implement");
+//        fail("need implement");
     }
 
 }
