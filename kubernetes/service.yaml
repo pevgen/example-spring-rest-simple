@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-rest-simple
+  namespace: default
+  labels:
+    app: spring-rest-simple
+spec:
+  selector:
+    app: spring-rest-simple
+  type: NodePort
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8081
+      nodePort: 30081

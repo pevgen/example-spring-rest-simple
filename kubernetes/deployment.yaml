@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-rest-simple
+  namespace: default
+  labels:
+    app: spring-rest-simple
+spec:
+  selector:
+    matchLabels:
+      app: spring-rest-simple
+  template:
+    metadata:
+      labels:
+        app: spring-rest-simple
+    spec:
+      containers:
+        - name: spring-rest-simple
+          image: spring-rest-simple:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+              name: http
+              protocol: TCP
+#          env:
+#            - name: SPRING_PROFILES_ACTIVE
+#              value: "dev"
+          envFrom:
+            - configMapRef:
+                name: spring-rest-simple

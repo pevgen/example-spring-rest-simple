@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-rest-simple
+  namespace: default
+  labels:
+    app: spring-rest-simple
+data:
+  MY_VARIABLE_INTO_APP: "my var from ConfigMap"
+  SPRING_PROFILES_ACTIVE: "dev"
+#  DATABASE_SERVER_NAME: "mysql"
+#  DATABASE_USER_NAME: "myapp"
+#  DATABASE_USER_PASSWORD: "myapp_pwd"
