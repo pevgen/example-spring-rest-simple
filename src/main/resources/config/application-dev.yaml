@@ -25,3 +25,10 @@ logging:
     org:
       hibernate:
         type: trace
+
+
+ml:
+  pevgen:
+    example:
+      springrestsimple:
+        simpleProperty: valueFromConfig
